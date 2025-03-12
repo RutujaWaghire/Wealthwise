@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Empowerment App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Financial Empowerment for Women</h1>
+        <nav>
+            <ul>
+                <li><a href="#resources">Educational Resources</a></li>
+                <li><a href="#budgeting">Budgeting Tools</a></li>
+                <li><a href="#calculators">Calculators</a></li>
+                <li><a href="#portfolio">Investment Portfolio</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="resources">
+            <h2>Educational Resources</h2>
+            <p>Access articles, videos, and courses to enhance your financial knowledge.</p>
+            <ul>
+                <li><a href="#">Understanding Budgeting</a></li>
+                <li><a href="#">Investment Basics</a></li>
+                <li><a href="#">Saving for Retirement</a></li>
+            </ul>
+        </section>
+
+        <section id="budgeting">
+            <h2>Budgeting Tools</h2>
+            <form id="budgetForm">
+                <label for="income">Monthly Income:</label>
+                <input type="number" id="income" required>
+                <label for="expenses">Monthly Expenses:</label>
+                <input type="number" id="expenses" required>
+                <button type="submit">Calculate Budget</button>
+            </form>
+            <div id="budgetResult"></div>
+        </section>
+
+        <section id="calculators">
+            <h2>Financial Calculators</h2>
+            <h3>SIP Calculator</h3>
+            <form id="sipForm">
+                <label for="sipAmount">Monthly SIP Amount:</label>
+                <input type="number" id="sipAmount" required>
+                <label for="sipYears">Investment Duration (Years):</label>
+                <input type="number" id="sipYears" required>
+                <button type="submit">Calculate SIP Returns</button>
+            </form>
+            <div id="sipResult"></div>
+
+            <h3>EMI Calculator</h3>
+            <form id="emiForm">
+                <label for="loanAmount">Loan Amount:</label>
+                <input type="number" id="loanAmount" required>
+                <label for="interestRate">Interest Rate (%):</label>
+                <input type="number" id="interestRate" required>
+                <label for="loanTenure">Loan Tenure (Months):</label>
+                <input type="number" id="loanTenure" required>
+                <button type="submit">Calculate EMI</button>
+            </form>
+            <div id="emiResult"></div>
+        </section>
+
+        <section id="portfolio">
+            <h2>Investment Portfolio Tracker</h2>
+            <p>Track your investments and monitor your portfolio performance.</p>
+            <button onclick="alert('Feature coming soon!')">Track Portfolio</button>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Financial Empowerment App</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
