@@ -3,82 +3,539 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Financial Empowerment App</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>WealthWise - Financial Empowerment for Women</title>
+    <style>
+        /* Global Styles */
+        :root {
+            --primary: #9c5eb5;
+            --primary-light: #d1abd3;
+            --primary-dark: #673ab7;
+            --secondary: #35a79c;
+            --accent: #ff6b98;
+            --light: #f7f7f7;
+            --dark: #333333;
+            --success: #4caf50;
+            --warning: #ff9800;
+            --danger: #f44336;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4 {
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        button, .btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            box-shadow: var(--shadow);
+        }
+        
+        button:hover, .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 2rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+        }
+        
+        nav ul li a:hover, nav ul li a.active {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(156, 94, 181, 0.9), rgba(103, 58, 183, 0.9)), url('/api/placeholder/1200/600') no-repeat center center/cover;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 60px;
+            padding: 2rem;
+        }
+        
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid white;
+        }
+        
+        .btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 4rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background-color: var(--primary-light);
+            color: var(--primary-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+        }
+        
+        /* Dashboard Styles */
+        .dashboard {
+            padding: 4rem 0;
+            margin-top: 60px;
+        }
+        
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 2rem;
+        }
+        
+        .sidebar {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            padding: 1.5rem;
+        }
+        
+        .sidebar-menu {
+            list-style: none;
+        }
+        
+        .sidebar-menu li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .sidebar-menu li a {
+            display: flex;
+            align-items: center;
+            color: var(--dark);
+            text-decoration: none;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .sidebar-menu li a:hover, .sidebar-menu li a.active {
+            background-color: var(--primary-light);
+            color: var(--primary-dark);
+        }
+        
+        .sidebar-menu li a i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .content-area {
+            min-height: 80vh;
+        }
+        
+        .dashboard-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .dashboard-card {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+        }
+        
+        .dashboard-card h3 {
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .dashboard-card h3 i {
+            margin-right: 10px;
+            color: var(--primary);
+        }
+        
+        .stat {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 1rem 0;
+            color: var(--primary-dark);
+        }
+        
+        .tab-container {
+            margin-bottom: 2rem;
+        }
+        
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 1.5rem;
+        }
+        
+        .tab {
+            padding: 0.8rem 1.5rem;
+            background: none;
+            border: none;
+            color: var(--dark);
+            cursor: pointer;
+            box-shadow: none;
+            font-weight: 600;
+            position: relative;
+        }
+        
+        .tab.active {
+            color: var(--primary);
+            background-color: transparent;
+        }
+        
+        .tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .form-row > div {
+            flex: 1;
+        }
+        
+        /* Calculator Styles */
+        .calculator {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .result-card {
+            background-color: var(--primary-light);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+            text-align: center;
+        }
+        
+        .result-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin: 1rem 0;
+        }
+        
+        /* Education Section */
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .course-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+        }
+        
+        .course-image {
+            height: 200px;
+            background: url('/api/placeholder/400/200') no-repeat center center/cover;
+        }
+        
+        .course-content {
+            padding: 1.5rem;
+        }
+        
+        .course-tag {
+            background-color: var(--primary-light);
+            color: var(--primary-dark);
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-bottom: 0.8rem;
+        }
+        
+        /* Expense Tracker Styles */
+        .transactions {
+            margin-top: 2rem;
+        }
+        
+        .transaction-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .transaction-info {
+            display: flex;
+            align-items: center;
+        }
+        
+        .transaction-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+        }
+        
+        .income .transaction-icon {
+            background-color: rgba(76, 175, 80, 0.2);
+            color: var(--success);
+        }
+        
+        .expense .transaction-icon {
+            background-color: rgba(244, 67, 54, 0.2);
+            color: var(--danger);
+        }
+        
+        .transaction-amount {
+            font-weight: 700;
+        }
+        
+        .income .transaction-amount {
+            color: var(--success);
+        }
+        
+        .expense .transaction-amount {
+            color: var(--danger);
+        }
+        
+        /* Charts */
+        .chart-container {
+            height: 300px;
+            margin-bottom: 2rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin-left: 1rem;
+                margin-right: 1rem;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Header -->
     <header>
-        <h1>Financial Empowerment for Women</h1>
-        <nav>
-            <ul>
-                <li><a href="#resources">Resources</a></li>
-                <li><a href="#budgeting">Budgeting</a></li>
-                <li><a href="#calculators">Calculators</a></li>
-                <li><a href="#portfolio">Portfolio</a></li>
-            </ul>
-        </nav>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Fin<span>EmpowerHer</span></div>
+                <nav>
+                    <ul>
+                        <li><a href="#" class="active">Dashboard</a></li>
+                        <li><a href="#">Budget</a></li>
+                        <li><a href="#">Expenses</a></li>
+                        <li><a href="#">Calculators</a></li>
+                        <li><a href="#">Learn</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
     </header>
-
-    <main>
-        <section id="resources" class="card">
-            <h2>Educational Resources</h2>
-            <p>Access articles, videos, and courses to enhance your financial knowledge.</p>
-            <ul>
-                <li><a href="#">Understanding Budgeting</a></li>
-                <li><a href="#">Investment Basics</a></li>
-                <li><a href="#">Saving for Retirement</a></li>
-            </ul>
-        </section>
-
-        <section id="budgeting" class="card">
-            <h2>Budgeting Tools</h2>
-            <form id="budgetForm">
-                <label for="income">Monthly Income:</label>
-                <input type="number" id="income" required>
-                <label for="expenses">Monthly Expenses:</label>
-                <input type="number" id="expenses" required>
-                <button type="submit">Calculate Budget</button>
-            </form>
-            <div id="budgetResult"></div>
-        </section>
-
-        <section id="calculators" class="card">
-            <h2>Financial Calculators</h2>
-            <h3>SIP Calculator</h3>
-            <form id="sipForm">
-                <label for="sipAmount">Monthly SIP Amount:</label>
-                <input type="number" id="sipAmount" required>
-                <label for="sipYears">Investment Duration (Years):</label>
-                <input type="number" id="sipYears" required>
-                <button type="submit">Calculate SIP Returns</button>
-            </form>
-            <div id="sipResult"></div>
-
-            <h3>EMI Calculator</h3>
-            <form id="emiForm">
-                <label for="loanAmount">Loan Amount:</label>
-                <input type="number" id="loanAmount" required>
-                <label for="interestRate">Interest Rate (%):</label>
-                <input type="number" id="interestRate" required>
-                <label for="loanTenure">Loan Tenure (Months):</label>
-                <input type="number" id="loanTenure" required>
-                <button type="submit">Calculate EMI</button>
-            </form>
-            <div id="emiResult"></div>
-        </section>
-
-        <section id="portfolio" class="card">
-            <h2>Investment Portfolio Tracker</h2>
-            <p>Track your investments and monitor your portfolio performance.</p>
-            <button onclick="alert('Feature coming soon!')">Track Portfolio</button>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2023 Financial Empowerment App</p>
-    </footer>
-
-    <script src="script.js"></script>
-</body>
-</html>
+    
+    <!-- Dashboard Section -->
+    <section class="dashboard">
+        <div class="container">
+            <div class="dashboard-grid">
+                <!-- Sidebar -->
+                <div class="sidebar">
+                    <h3>Hello, Sarah!</h3>
+                    <p>Welcome back to your financial dashboard.</p>
+                    <ul class="sidebar-menu">
+                        <li><a href="#" class="active"><i>📊</i> Overview</a></li>
+                        <li><a href="#"><i>💰</i> Budget Planner</a></li>
+                        <li><a href="#"><i>💸</i> Expense
