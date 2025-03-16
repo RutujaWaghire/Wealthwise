@@ -1,51 +1,64 @@
-/* Add Investment Page Specific Styles */
-.investment-form-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem;
+/* Add Investment Page Styles */
+:root {
+    --step-gap: 3rem;
+    --card-padding: 2rem;
+    --form-spacing: 1.5rem;
 }
 
+.investment-form-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* Form Header */
 .form-header {
+    background-color: var(--card-background);
+    border-radius: 1rem;
+    padding: 1.5rem 2rem;
     margin-bottom: 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .form-header h1 {
-    font-size: 2rem;
+    color: var(--text-primary);
+    font-size: 1.75rem;
     margin-bottom: 0.5rem;
 }
 
 .current-datetime {
     color: var(--text-secondary);
-    font-size: 0.9rem;
+    font-size: 0.875rem;
 }
 
-/* Progress Bar Styles */
+/* Progress Steps */
 .form-progress {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 3rem;
+    margin-bottom: var(--step-gap);
     position: relative;
+    padding: 0 2rem;
 }
 
 .form-progress::before {
     content: '';
     position: absolute;
-    top: 50%;
+    top: 20px;
     left: 0;
     right: 0;
     height: 2px;
     background-color: var(--border-color);
-    transform: translateY(-50%);
-    z-index: 0;
+    z-index: 1;
 }
 
 .progress-step {
     position: relative;
-    z-index: 1;
+    z-index: 2;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.75rem;
+    width: 120px;
 }
 
 .step-number {
@@ -59,6 +72,7 @@
     justify-content: center;
     font-weight: 600;
     color: var(--text-secondary);
+    transition: all 0.3s ease;
 }
 
 .progress-step.active .step-number {
@@ -68,80 +82,82 @@
 }
 
 .step-label {
-    font-size: 0.9rem;
+    font-size: 0.875rem;
     color: var(--text-secondary);
     font-weight: 500;
+    text-align: center;
 }
 
 .progress-step.active .step-label {
     color: var(--primary-color);
 }
 
-/* Form Steps Container */
+/* Form Container */
 .investment-form-wrapper {
     background-color: var(--card-background);
     border-radius: 1rem;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    padding: 2rem;
-}
-
-.form-step {
-    display: none;
-}
-
-.form-step.active {
-    display: block;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
 }
 
 /* Asset Type Selection */
+.asset-type-selector {
+    padding: var(--card-padding);
+}
+
+.asset-type-selector h3 {
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-primary);
+}
+
 .asset-type-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1.5rem;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
 }
 
 .asset-type-card {
+    background-color: var(--background-color);
     padding: 1.5rem;
-    border: 2px solid var(--border-color);
     border-radius: 1rem;
     text-align: center;
     cursor: pointer;
-    transition: all var(--transition-speed);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
 }
 
 .asset-type-card:hover {
-    border-color: var(--primary-color);
     transform: translateY(-2px);
+    border-color: var(--primary-color);
 }
 
 .asset-type-card.selected {
-    background-color: var(--primary-color);
+    background-color: rgba(99, 102, 241, 0.1);
     border-color: var(--primary-color);
-    color: white;
 }
 
 .asset-type-card i {
     font-size: 2rem;
+    color: var(--primary-color);
     margin-bottom: 1rem;
 }
 
 .asset-type-card h4 {
+    font-size: 1.1rem;
     margin-bottom: 0.5rem;
+    color: var(--text-primary);
 }
 
 .asset-type-card p {
-    font-size: 0.9rem;
+    font-size: 0.875rem;
     color: var(--text-secondary);
-}
-
-.asset-type-card.selected p {
-    color: rgba(255, 255, 255, 0.8);
 }
 
 /* Asset Search Section */
 .asset-search-section {
-    margin-top: 2rem;
+    margin-top: 2.5rem;
 }
 
 .search-container {
@@ -151,47 +167,227 @@
 
 .search-container input {
     width: 100%;
-    padding: 1rem 3rem 1rem 1rem;
+    padding: 1rem 3rem 1rem 1.5rem;
     border: 2px solid var(--border-color);
-    border-radius: 0.5rem;
+    border-radius: 0.75rem;
     font-size: 1rem;
-    transition: border-color var(--transition-speed);
+    background-color: var(--background-color);
+    color: var(--text-primary);
+    transition: all 0.3s ease;
 }
 
 .search-container input:focus {
     border-color: var(--primary-color);
     outline: none;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
 }
 
 .search-container i {
     position: absolute;
-    right: 1rem;
+    right: 1.5rem;
     top: 50%;
     transform: translateY(-50%);
     color: var(--text-secondary);
 }
 
 .search-results {
-    background-color: var(--card-background);
-    border-radius: 0.5rem;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    background-color: var(--background-color);
+    border-radius: 0.75rem;
     max-height: 300px;
     overflow-y: auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Transaction Details Styling */
-.selected-asset-info {
-    margin-bottom: 2rem;
-    padding: 1.5rem;
+/* Form Navigation */
+.form-navigation {
+    padding: 1.5rem var(--card-padding);
     background-color: var(--background-color);
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+
+.btn-prev,
+.btn-next,
+.btn-submit {
+    padding: 0.75rem 1.5rem;
     border-radius: 0.5rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.btn-prev {
+    background-color: var(--background-color);
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+}
+
+.btn-next,
+.btn-submit {
+    background-color: var(--primary-color);
+    border: none;
+    color: white;
+}
+
+.btn-next:disabled {
+    background-color: var(--border-color);
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* Transaction Details Step */
+.transaction-details {
+    padding: var(--card-padding);
+}
+
+.selected-asset-info {
+    background-color: var(--background-color);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
 }
 
 .asset-preview {
-    display: flex;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
     align-items: center;
     gap: 2rem;
 }
 
 .asset-preview img {
-    width
+    width: 48px;
+    height: 48px;
+    border-radius: 0.5rem;
+}
+
+.asset-basic-info h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.25rem;
+    color: var(--text-primary);
+}
+
+.asset-basic-info span {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+.current-price {
+    text-align: right;
+}
+
+.current-price span {
+    display: block;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.25rem;
+}
+
+.current-price h4 {
+    font-size: 1.25rem;
+    color: var(--text-primary);
+}
+
+/* Form Groups */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: var(--form-spacing);
+}
+
+.form-group {
+    margin-bottom: var(--form-spacing);
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 2px solid var(--border-color);
+    border-radius: 0.5rem;
+    background-color: var(--background-color);
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+/* Review Step */
+.transaction-review {
+    padding: var(--card-padding);
+}
+
+.review-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.review-section h4 {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.review-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.review-item:last-child {
+    border-bottom: none;
+}
+
+.review-item .label {
+    color: var(--text-secondary);
+}
+
+.review-item .value {
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .asset-preview {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 1rem;
+    }
+
+    .current-price {
+        text-align: center;
+    }
+
+    .form-progress {
+        padding: 0 1rem;
+    }
+
+    .progress-step {
+        width: auto;
+    }
+}
