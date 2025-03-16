@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WealthVision | Smart Portfolio Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <i class="fas fa-chart-pie"></i>
+            <span>WealthVision</span>
+        </div>
+        <nav class="nav-menu">
+            <a href="#dashboard" class="active">
+                <i class="fas fa-home"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="#portfolio">
+                <i class="fas fa-briefcase"></i>
+                <span>Portfolio</span>
+            </a>
+            <a href="#transactions">
+                <i class="fas fa-exchange-alt"></i>
+                <span>Transactions</span>
+            </a>
+            <a href="#analytics">
+                <i class="fas fa-chart-line"></i>
+                <span>Analytics</span>
+            </a>
+            <a href="#alerts">
+                <i class="fas fa-bell"></i>
+                <span>Alerts</span>
+            </a>
+        </nav>
+        <div class="user-profile">
+            <img src="https://api.dicebear.com/6.x/avataaars/svg?seed=RutujaWaghire" alt="Profile">
+            <div class="user-info">
+                <span class="user-name">Rutuja Waghire</span>
+                <span class="user-role">Premium Member</span>
+            </div>
+        </div>
+    </div>
+
+    <main class="main-content">
+        <header class="top-bar">
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search assets, transactions...">
+            </div>
+            <div class="top-bar-actions">
+                <button class="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="notification-btn">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </button>
+                <a href="add-investment.html" class="add-investment-btn">
+                    <i class="fas fa-plus"></i>
+                    Add Investment
+                </a>
+            </div>
+        </header>
+
+        <div class="dashboard-overview">
+            <div class="overview-card total-value">
+                <div class="card-icon">
+                    <i class="fas fa-wallet"></i>
+                </div>
+                <div class="card-info">
+                    <h3>Total Portfolio Value</h3>
+                    <h2>$45,250.00</h2>
+                    <span class="change positive">
+                        <i class="fas fa-arrow-up"></i>
+                        12.5% ($5,250)
+                    </span>
+                </div>
+            </div>
+
+            <div class="overview-card daily-profit">
+                <div class="card-icon">
+                    <i class="fas fa-chart-bar"></i>
+                </div>
+                <div class="card-info">
+                    <h3>Today's Profit/Loss</h3>
+                    <h2>+$350.75</h2>
+                    <span class="change positive">
+                        <i class="fas fa-arrow-up"></i>
+                        0.78% today
+                    </span>
+                </div>
+            </div>
+
+            <div class="overview-card total-assets">
+                <div class="card-icon">
+                    <i class="fas fa-coins"></i>
+                </div>
+                <div class="card-info">
+                    <h3>Total Assets</h3>
+                    <h2>15</h2>
+                    <span class="assets-distribution">
+                        8 Stocks • 4 Crypto • 3 ETFs
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="card portfolio-chart">
+                <div class="card-header">
+                    <h3>Portfolio Performance</h3>
+                    <div class="chart-controls">
+                        <button class="time-filter active">1D</button>
+                        <button class="time-filter">1W</button>
+                        <button class="time-filter">1M</button>
+                        <button class="time-filter">1Y</button>
+                        <button class="time-filter">ALL</button>
+                    </div>
+                </div>
+                <canvas id="performanceChart"></canvas>
+            </div>
+
+            <div class="card asset-allocation">
+                <div class="card-header">
+                    <h3>Asset Allocation</h3>
+                    <button class="refresh-btn">
+                        <i class="fas fa-sync-alt"></i>
+                    </button>
+                </div>
+                <div class="allocation-container">
+                    <canvas id="allocationChart"></canvas>
+                    <div class="allocation-legend"></div>
+                </div>
+            </div>
+
+            <div class="card top-performers">
+                <div class="card-header">
+                    <h3>Top Performers</h3>
+                    <select class="period-selector">
+                        <option value="day">Today</option>
+                        <option value="week">This Week</option>
+                        <option value="month">This Month</option>
+                    </select>
+                </div>
+                <div class="performers-list">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <div class="card recent-transactions">
+                <div class="card-header">
+                    <h3>Recent Transactions</h3>
+                    <a href="#transactions" class="view-all">View All</a>
+                </div>
+                <div class="transaction-list">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

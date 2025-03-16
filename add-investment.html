@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Investment | WealthVision</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="add-investment.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Keep the same sidebar as index.html -->
+    <div class="sidebar">
+        <!-- Sidebar content from index.html -->
+    </div>
+
+    <main class="main-content">
+        <div class="investment-form-container">
+            <header class="form-header">
+                <h1>Add New Investment</h1>
+                <p class="current-datetime">2025-03-16 09:48:24 UTC</p>
+            </header>
+
+            <div class="investment-form-wrapper">
+                <div class="form-progress">
+                    <div class="progress-step active" data-step="1">
+                        <div class="step-number">1</div>
+                        <div class="step-label">Asset Selection</div>
+                    </div>
+                    <div class="progress-step" data-step="2">
+                        <div class="step-number">2</div>
+                        <div class="step-label">Transaction Details</div>
+                    </div>
+                    <div class="progress-step" data-step="3">
+                        <div class="step-number">3</div>
+                        <div class="step-label">Review & Confirm</div>
+                    </div>
+                </div>
+
+                <form id="multiStepInvestmentForm" class="investment-form">
+                    <!-- Step 1: Asset Selection -->
+                    <div class="form-step active" data-step="1">
+                        <div class="asset-type-selector">
+                            <h3>Select Asset Type</h3>
+                            <div class="asset-type-grid">
+                                <div class="asset-type-card" data-type="stock">
+                                    <i class="fas fa-chart-line"></i>
+                                    <h4>Stocks</h4>
+                                    <p>Trade company shares</p>
+                                </div>
+                                <div class="asset-type-card" data-type="crypto">
+                                    <i class="fab fa-bitcoin"></i>
+                                    <h4>Cryptocurrency</h4>
+                                    <p>Digital currencies</p>
+                                </div>
+                                <div class="asset-type-card" data-type="etf">
+                                    <i class="fas fa-folder"></i>
+                                    <h4>ETFs</h4>
+                                    <p>Exchange-traded funds</p>
+                                </div>
+                                <div class="asset-type-card" data-type="bond">
+                                    <i class="fas fa-file-invoice-dollar"></i>
+                                    <h4>Bonds</h4>
+                                    <p>Fixed-income securities</p>
+                                </div>
+                            </div>
+
+                            <div class="asset-search-section">
+                                <h3>Search Asset</h3>
+                                <div class="search-container">
+                                    <input type="text" id="assetSearch" placeholder="Enter symbol or company name...">
+                                    <i class="fas fa-search"></i>
+                                </div>
+                                <div class="search-results">
+                                    <!-- Results will be populated by JavaScript -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-navigation">
+                            <button type="button" class="btn-next" disabled>Continue to Transaction Details</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Transaction Details -->
+                    <div class="form-step" data-step="2">
+                        <div class="transaction-details">
+                            <div class="selected-asset-info">
+                                <div class="asset-preview">
+                                    <img src="" alt="" id="assetLogo">
+                                    <div class="asset-basic-info">
+                                        <h3 id="assetName">-</h3>
+                                        <span id="assetSymbol">-</span>
+                                    </div>
+                                    <div class="current-price">
+                                        <span>Current Price</span>
+                                        <h4 id="currentPrice">$0.00</h4>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="transaction-form">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="transactionType">Transaction Type</label>
+                                        <div class="toggle-buttons">
+                                            <button type="button" class="toggle-btn active" data-type="buy">Buy</button>
+                                            <button type="button" class="toggle-btn" data-type="sell">Sell</button>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="date">Transaction Date</label>
+                                        <input type="datetime-local" id="date" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="quantity">Quantity</label>
+                                        <div class="quantity-input">
+                                            <input type="number" id="quantity" required min="0" step="0.000001">
+                                            <div class="quick-amounts">
+                                                <button type="button">25%</button>
+                                                <button type="button">50%</button>
+                                                <button type="button">75%</button>
+                                                <button type="button">100%</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="price">Price Per Unit</label>
+                                        <div class="price-input">
+                                            <span class="currency-symbol">$</span>
+                                            <input type="number" id="price" required min="0" step="0.01">
+                                            <button type="button" class="use-market-price">Use Market Price</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="total">Total Value</label>
+                                    <div class="total-value">
+                                        <span class="currency-symbol">$</span>
+                                        <span id="totalValue">0.00</span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="notes">Notes (Optional)</label>
+                                    <textarea id="notes" rows="3" placeholder="Add any relevant notes about this transaction..."></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-navigation">
+                            <button type="button" class="btn-prev">Back</button>
+                            <button type="button" class="btn-next">Review Transaction</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Review & Confirm -->
+                    <div class="form-step" data-step="3">
+                        <div class="transaction-review">
+                            <h3>Review Your Transaction</h3>
+                            <div class="review-grid">
+                                <div class="review-section">
+                                    <h4>Asset Information</h4>
+                                    <div class="review-item">
+                                        <span class="label">Asset Type</span>
+                                        <span class="value" id="review-asset-type">-</span>
+                                    </div>
+                                    <div class="review-item">
+                                        <span class="label">Symbol</span>
+                                        <span class="value" id="review-symbol">-</span>
+                                    </div>
+                                    <div class="review-item">
+                                        <span class="label">Name</span>
+                                        <span class="value" id="review-name">-</span>
+                                    </div>
+                                </div>
+
+                                <div class="review-section">
+                                    <h4>Transaction Details</h4>
+                                    <div class="review-item">
+                                        <span class="label">Type</span>
+                                        <span class="value" id="review-type">-</span>
+                                    </div>
+                                    <div class="review-item">
+                                        <span class="label">Quantity</span>
+                                        <span class="value" id="review-quantity">-</span>
+                                    </div>
+                                    <div class="review-item">
+                                        <span class="label">Price Per Unit</span>
+                                        <span class="value" id="review-price">-</span>
+                                    </div>
+                                    <div class="review-item">
+                                        <span class="label">Total Value</span>
+                                        <span class="value" id="review-total">-</span>
+                                    </div>
+                                    <div class="review-item">
+                                        <span class="label">Date</span>
+                                        <span class="value" id="review-date">-</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="review-notes">
+                                <h4>Notes</h4>
+                                <p id="review-notes">-</p>
+                            </div>
+                        </div>
+                        <div class="form-navigation">
+                            <button type="button" class="btn-prev">Back</button>
+                            <button type="submit" class="btn-submit">Confirm & Add Investment</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script src="add-investment.js"></script>
+</body>
+</html>
